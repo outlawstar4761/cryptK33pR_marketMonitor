@@ -16,7 +16,7 @@ class Main{
 
     const CRYPTAPI = 'http://outlawdesigns.ddns.net:9662/';
     const USERNAME = 'outlaw';
-    const PASSWORD = 'admin';
+    const PASSWORD = 'test';
 
     protected $accessToken;
 
