@@ -4,15 +4,19 @@ require_once __DIR__ . '/cryptopia.php';
 require_once __DIR__ . '/bittrex.php';
 
 while(true){
-    $m = new Main();
+    try{
+        $m = new Main();
+    }catch(\Exception $e){
+        echo $e->getMessage() . "\n";
+    }
     sleep(900);
 }
 
 class Main{
 
-    const CRYPTAPI = 'http://cryptk33pr.attlocal.net/';
+    const CRYPTAPI = 'http://outlawdesigns.ddns.net:9662/';
     const USERNAME = 'outlaw';
-    const PASSWORD = 'test';
+    const PASSWORD = 'admin';
 
     protected $accessToken;
 
@@ -26,7 +30,8 @@ class Main{
     public function __construct(){
         $this->bittrex = new \Bittrex\Bittrex();
         $this->cryptopia = new \Cryptopia\Cryptopia();
-        $this->getCoins()
+        $this->_authenticate()
+		->getCoins()
                 ->buildBittrexMarkets()
                 ->buildCryptopiaMarkets()
                 ->getBittrexSummaries()
